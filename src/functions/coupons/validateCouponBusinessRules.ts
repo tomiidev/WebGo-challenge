@@ -14,7 +14,6 @@ export type CouponValidationResult =
   | { status: "order-not-found" }
   | { status: "invalid-order" }
   | { status: "already-applied" }
-  | { status: "min-purchase-not-met" }
   | { status: "min-purchase-not-met"; minPurchase: number }
   | { status: "invalid-data"; message: string };
 /**
@@ -90,7 +89,7 @@ export type ApplyTransactionResult =
  * @returns null if input is valid, or a string describing the error
  */
 export const validateCouponInput = (coupon: {
-  discountType: string;
+  discountType: "percentage" | "fixed";
   discountValue: number;
   validFrom: string;
   validUntil: string;
