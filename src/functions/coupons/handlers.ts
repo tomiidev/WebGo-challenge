@@ -9,6 +9,7 @@ import {
   normalizeCode,
   nowISO,
   successResponse,
+  validateAndFormatCouponDates,
 } from "./utils.js";
 import { CouponDocument } from "../../types/coupon.js";
 import {
@@ -201,7 +202,17 @@ export const updateCouponHandler = async (
       ...validUpdates,
       updatedAt: nowISO(),
     };
+    if (validUpdates.validFrom || validUpdates.validUntil) {
+      const { validFromUTC, validUntilUTC } = validateAndFormatCouponDates(
+        validUpdates.validFrom,
+        validUpdates.validUntil,
+        existingCoupon.validFrom,
+        existingCoupon.validUntil,
+      );
 
+      safeUpdates.validFrom = validFromUTC;
+      safeUpdates.validUntil = validUntilUTC;
+    }
     await docRef.update(safeUpdates);
 
     const updatedSnap = await docRef.get();

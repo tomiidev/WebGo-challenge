@@ -90,3 +90,28 @@ export const errorResponse = <T = null>(
   data: null,
   error: message,
 });
+/**
+ * Validates and converts coupon dates to UTC.
+ * Returns an object with validFrom and validUntil in UTC.
+ * Throws an error with an English message if the date range is invalid.
+ */
+
+export function validateAndFormatCouponDates(
+  validFrom?: string,
+  validUntil?: string,
+  existingValidFrom?: string,
+  existingValidUntil?: string,
+): { validFromUTC: string; validUntilUTC: string } {
+  const validFromUTC = validFrom
+    ? new Date(validFrom).toISOString()
+    : existingValidFrom!;
+  const validUntilUTC = validUntil
+    ? new Date(validUntil).toISOString()
+    : existingValidUntil!;
+
+  if (validFromUTC >= validUntilUTC) {
+    throw new Error("Date range invalid — validFrom must be before validUntil");
+  }
+
+  return { validFromUTC, validUntilUTC };
+}
