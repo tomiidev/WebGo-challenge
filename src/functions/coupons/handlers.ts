@@ -100,7 +100,9 @@ export const createCouponHandler = async (
     if (inputError) return errorResponse(inputError);
     const validFromUTC = new Date(validFrom).toISOString();
     const validUntilUTC = new Date(validUntil).toISOString();
-
+    if (validFromUTC >= validUntilUTC) {
+      return errorResponse("validFrom must be before validUntil");
+    }
     const now = nowISO();
     const docRef = couponsCollection.doc();
 
