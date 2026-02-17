@@ -22,7 +22,6 @@ import {
 import { buildCouponDocumentFromSnapshot } from "./buildCouponDocumentFromSnapshot.js";
 import { findCouponByCodeAndSite } from "./findCouponByCodeAndSite.js";
 import { getCouponsBySite } from "./getCouponsBySite.js";
-import { validateRawCouponData } from "./validateRawCouponData.js";
 import { applyCouponTransaction } from "./applyCouponTrans.js";
 import {
   validateCouponBusinessRules,
@@ -62,8 +61,6 @@ import { requireSiteOwnership } from "./auth.js";
  */
 
 export const couponsCollection = db.collection("coupons");
-
-const sitesCollection = db.collection("sites");
 
 /** Crear un nuevo cupón para una tienda. */
 export const createCouponHandler = async (
