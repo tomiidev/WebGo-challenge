@@ -1,4 +1,4 @@
-import { CouponValidationResult } from "./validateCouponBusinessRules.js";
+import { CouponValidationResult } from "../../types/coupons/applyTypes.js";
 
 /**
  * Returns a validation result indicating that the coupon was not found in the database.

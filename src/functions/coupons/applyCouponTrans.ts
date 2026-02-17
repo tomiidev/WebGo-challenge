@@ -2,10 +2,7 @@ import { db } from "../../lib/firebase.js";
 import { calculateDiscount, nowISO } from "./utils.js";
 import { buildCouponDocumentFromSnapshot } from "./buildCouponDocumentFromSnapshot.js";
 import { validateRawCouponData } from "./validateRawCouponData.js";
-import {
-  validateCouponBusinessRules,
-  CouponValidationResult,
-} from "./validateCouponBusinessRules.js";
+import { validateCouponBusinessRules } from "./validateCouponBusinessRules.js";
 import {
   couponAlreadyApplied,
   couponApplied,
@@ -14,10 +11,8 @@ import {
   couponNotFound,
 } from "./validateResultBuilders.js";
 import { FieldValue } from "firebase-admin/firestore";
+import { ApplyTransactionResult } from "../../types/coupons/applyTypes.js";
 
-export type ApplyTransactionResult =
-  | CouponValidationResult
-  | { status: "applied" };
 /**
  * Applies a coupon to an order within a Firestore transaction.
  *

@@ -1,5 +1,6 @@
 import { FunctionResponse } from "../../types/common.js";
-import { CouponValidationResult } from "./validateCouponBusinessRules.js";
+import { CouponValidationResult } from "../../types/coupons/applyTypes.js";
+
 /**
  * Normalizes a coupon code for consistent storage and lookup.
  * Trims whitespace and converts to lowercase.

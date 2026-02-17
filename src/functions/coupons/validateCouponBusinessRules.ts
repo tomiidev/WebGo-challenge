@@ -1,21 +1,11 @@
 import { CouponDocument } from "../../types/coupon.js";
+import { CouponValidationResult } from "../../types/coupons/applyTypes.js";
 import { isWithinDateRange } from "./utils.js";
 
 /**
  * Result type for validating a coupon against business rules.
  */
-export type CouponValidationResult =
-  | { status: "valid"; coupon: CouponDocument }
-  | { status: "not-found" }
-  | { status: "inactive" }
-  | { status: "expired" }
-  | { status: "limit-reached" }
-  | { status: "not-authorized" }
-  | { status: "order-not-found" }
-  | { status: "invalid-order" }
-  | { status: "already-applied" }
-  | { status: "min-purchase-not-met"; minPurchase: number }
-  | { status: "invalid-data"; message: string };
+
 /**
  * Validates a coupon against core business rules.
  *

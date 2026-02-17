@@ -51,7 +51,7 @@ import {
 import {
   ApplyCouponByIdRequest,
   ApplyCouponResponse,
-} from "../../types/coupons/apply.js";
+} from "../../types/coupons/applyTypes.js";
 import { buildCouponDocumentFromRawData } from "./buildCouponDocumentFromRawData.js";
 import { requireSiteOwnership } from "./auth.js";
 /**
